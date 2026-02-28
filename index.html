@@ -213,8 +213,8 @@ textarea.field-value:focus{background:#f9f9fb}
 var BACKEND_URL = (function() {
   var p = new URLSearchParams(location.search).get('backend');
   if (p) return p.replace(/\/$/, '');
-  // Same-origin default (works when admin is served by the backend itself)
-  return window.location.origin;
+  // Override via ?backend=http://localhost:8000 for local dev
+  return 'https://sfl-multi-agents-ws.up.railway.app';
 })();
 var API_KEY = new URLSearchParams(location.search).get('key') || '';
 
