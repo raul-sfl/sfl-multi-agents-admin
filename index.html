@@ -57,6 +57,8 @@ header p{font-size:12px;opacity:.75;margin-top:2px}
 .b-active{background:#d1fae5;color:#065f46}
 .b-closed{background:#f1f1f4;color:#6b7280}
 .b-agent{background:#fce7f3;color:#9d174d}
+.b-python{background:#e0e7ff;color:#3730a3}
+.b-gcs{background:#d1fae5;color:#065f46}
 .conv-count{font-size:11px;color:#9e9e9e}
 
 /* ── Detail panel ── */
@@ -89,18 +91,20 @@ header p{font-size:12px;opacity:.75;margin-top:2px}
 /* ── Agents tab ── */
 .agents-panel{flex:1;display:flex;overflow:hidden}
 .agents-sidebar{width:280px;background:#fff;border-right:1px solid #e8e8ed;display:flex;flex-direction:column;flex-shrink:0}
-.agents-sidebar-head{padding:16px;border-bottom:1px solid #e8e8ed;font-size:13px;font-weight:700;color:#6e6e73;text-transform:uppercase;letter-spacing:.5px}
+.agents-sidebar-head{padding:12px 16px;border-bottom:1px solid #e8e8ed;display:flex;align-items:center;justify-content:space-between}
+.agents-sidebar-head span{font-size:13px;font-weight:700;color:#6e6e73;text-transform:uppercase;letter-spacing:.5px}
 .agent-list{flex:1;overflow-y:auto}
 .agent-item{padding:14px 16px;border-bottom:1px solid #f0f0f5;cursor:pointer;transition:background .12s;border-left:3px solid transparent}
 .agent-item:hover{background:#fafafa}
 .agent-item.active{background:#fff0f5;border-left-color:#f60e5f}
-.agent-item-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.agent-item-name{font-size:13px;font-weight:700;margin-bottom:3px;display:flex;align-items:center;gap:6px}
 .agent-item-model{font-size:11px;color:#9e9e9e;font-family:monospace}
-.agent-item-tag{font-size:10px;padding:2px 6px;border-radius:8px;background:#fce7f3;color:#9d174d;margin-top:4px;display:inline-block}
+.agent-item-tags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.agent-item-tag{font-size:10px;padding:2px 6px;border-radius:8px;background:#fce7f3;color:#9d174d;display:inline-block}
 
 .agent-detail{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#f5f5f7}
-.agent-detail-head{background:#fff;padding:20px 24px;border-bottom:1px solid #e8e8ed;flex-shrink:0}
-.agent-detail-head h2{font-size:16px;font-weight:700;margin-bottom:6px}
+.agent-detail-head{background:#fff;padding:20px 24px;border-bottom:1px solid #e8e8ed;flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between}
+.agent-detail-head-left h2{font-size:16px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .agent-detail-meta{display:flex;gap:16px;font-size:12px;color:#6e6e73}
 .agent-detail-meta strong{color:#1d1d1f}
 .agent-detail-body{flex:1;overflow-y:auto;padding:24px}
@@ -110,18 +114,44 @@ header p{font-size:12px;opacity:.75;margin-top:2px}
 .field-value{font-size:13px;line-height:1.6;color:#1d1d1f;white-space:pre-wrap;word-break:break-word}
 textarea.field-value{width:100%;border:none;outline:none;resize:vertical;min-height:180px;font-family:inherit;background:transparent;padding:0}
 textarea.field-value:focus{background:#f9f9fb}
-.field-actions{margin-top:12px;display:flex;gap:8px;align-items:center}
+input.field-value{width:100%;border:none;outline:none;font-family:inherit;background:transparent;padding:0}
+input.field-value:focus{background:#f9f9fb}
+.field-actions{margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .btn{padding:8px 18px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;transition:background .15s}
 .btn-primary{background:#f60e5f;color:#fff}
 .btn-primary:hover{background:#d40050}
 .btn-secondary{background:#e8e8ed;color:#1d1d1f}
 .btn-secondary:hover{background:#d2d2d7}
+.btn-danger{background:#fee2e2;color:#991b1b}
+.btn-danger:hover{background:#fca5a5}
+.btn-sm{padding:5px 12px;font-size:12px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .save-status{font-size:12px;color:#6e6e73}
 .save-ok{color:#057a55}
 .save-err{color:#e63946}
 
+.tools-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.tool-check{display:flex;align-items:center;gap:5px;font-size:12px;background:#f5f5f7;padding:5px 10px;border-radius:7px}
+.tool-check input{accent-color:#f60e5f}
+.tool-check.always{opacity:.6}
+
 .agent-empty{display:flex;align-items:center;justify-content:center;flex:1;color:#b0b0b8;font-size:14px}
+
+/* ── Modal ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;width:560px;max-width:95vw;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-head{padding:20px 24px;border-bottom:1px solid #e8e8ed;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-head h3{font-size:16px;font-weight:700}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:#9e9e9e;line-height:1;padding:4px}
+.modal-close:hover{color:#1d1d1f}
+.modal-body{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px}
+.modal-footer{padding:16px 24px;border-top:1px solid #e8e8ed;display:flex;gap:10px;justify-content:flex-end;flex-shrink:0}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-label{font-size:12px;font-weight:700;color:#6e6e73;text-transform:uppercase;letter-spacing:.4px}
+.form-input{padding:9px 12px;border:1px solid #d2d2d7;border-radius:8px;font-size:13px;outline:none;font-family:inherit}
+.form-input:focus{border-color:#f60e5f}
+textarea.form-input{resize:vertical;min-height:120px}
 
 /* scrollbar */
 ::-webkit-scrollbar{width:5px}
@@ -197,7 +227,10 @@ textarea.field-value:focus{background:#f9f9fb}
 <div class="tab-content" id="tab-agents">
   <div class="agents-panel">
     <div class="agents-sidebar">
-      <div class="agents-sidebar-head">Agents</div>
+      <div class="agents-sidebar-head">
+        <span>Agents</span>
+        <button class="btn btn-primary btn-sm" onclick="showCreateModal()">+ New</button>
+      </div>
       <div class="agent-list" id="agent-list"><div class="placeholder">Loading…</div></div>
     </div>
     <div class="agent-detail" id="agent-detail">
@@ -206,15 +239,54 @@ textarea.field-value:focus{background:#f9f9fb}
   </div>
 </div>
 
+<!-- ── Create Agent Modal ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="maybeCloseModal(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>New Agent</h3>
+      <button class="modal-close" onclick="hideModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-field">
+        <label class="form-label">Name <small style="text-transform:none;font-weight:400">(unique identifier, no spaces)</small></label>
+        <input class="form-input" id="new-name" type="text" placeholder="e.g. PricingExpert">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Routing Hint <small style="text-transform:none;font-weight:400">(when should Triage route here?)</small></label>
+        <input class="form-input" id="new-routing-hint" type="text" placeholder="e.g. Questions about pricing and promotions">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Model</label>
+        <select class="form-input" id="new-model">
+          <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+          <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+          <option value="gemini-1.5-pro">gemini-1.5-pro</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Tools</label>
+        <div id="new-tools-grid" class="tools-grid"><span style="font-size:12px;color:#9e9e9e">Loading tools…</span></div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">System Instruction</label>
+        <textarea class="form-input" id="new-instruction" rows="7" placeholder="You are the … specialist for Stayforlong. Always respond in {lang_name}…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="hideModal()">Cancel</button>
+      <button class="btn btn-primary" id="create-btn" onclick="createAgent()">Create Agent</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────────────────
-// Set BACKEND_URL in .env or override via ?backend= query param.
-// In production set this to your sfl-multi-agents-adk URL.
 var BACKEND_URL = (function() {
   var p = new URLSearchParams(location.search).get('backend');
   if (p) return p.replace(/\/$/, '');
-  // Override via ?backend=http://localhost:8000 for local dev
-  return 'https://sfl-multi-agents-ws.up.railway.app';
+  var h = location.hostname;
+  var isLocal = !h || h === 'localhost' || h === '127.0.0.1';
+  return isLocal ? 'http://localhost:8000' : 'https://sfl-multi-agents-ws.up.railway.app';
 })();
 var API_KEY = new URLSearchParams(location.search).get('key') || '';
 
@@ -444,26 +516,26 @@ function doRefresh() {
 
 // ── AGENTS ────────────────────────────────────────────────────────────────────
 var agentsCache = null;
+var toolsCache = null;
 var activeAgentName = null;
 
 async function loadAgents() {
   var list = document.getElementById('agent-list');
   try {
-    var r = await fetch(api('/admin/api/agents'), {headers: hdrs()});
-    if (r.status === 404) {
-      // Endpoint not yet implemented — show placeholder list from health
-      list.innerHTML = '<div class="placeholder">Agent list API not available yet.<br>Add GET /admin/api/agents to sfl-multi-agents-adk.</div>';
-      return;
-    }
-    if (r.status === 401) {
+    var [ar, tr] = await Promise.all([
+      fetch(api('/admin/api/agents'), {headers: hdrs()}),
+      fetch(api('/admin/api/agents/tools'), {headers: hdrs()}),
+    ]);
+    if (ar.status === 401) {
       list.innerHTML = '<div class="placeholder err">Unauthorized — add ?key=YOUR_API_KEY</div>';
       return;
     }
-    if (!r.ok) {
-      list.innerHTML = '<div class="placeholder err">Error ' + r.status + '</div>';
+    if (!ar.ok) {
+      list.innerHTML = '<div class="placeholder err">Error ' + ar.status + '</div>';
       return;
     }
-    agentsCache = await r.json();
+    agentsCache = await ar.json();
+    if (tr.ok) toolsCache = await tr.json();
     renderAgentList(agentsCache);
   } catch(e) {
     list.innerHTML = '<div class="placeholder err">Network error — check BACKEND_URL</div>';
@@ -477,11 +549,16 @@ function renderAgentList(agents) {
     return;
   }
   list.innerHTML = agents.map(function(a) {
+    var sourceClass = a.source === 'gcs' ? 'b-gcs' : 'b-python';
+    var sourceLabel = a.source === 'gcs' ? 'GCS' : 'Python';
     return (
       '<div class="agent-item' + (a.name===activeAgentName?' active':'') + '" data-name="' + esc(a.name) + '">' +
       '<div class="agent-item-name">' + esc(a.name) + '</div>' +
       '<div class="agent-item-model">' + esc(a.model||'—') + '</div>' +
-      (a.is_fallback ? '<span class="agent-item-tag">fallback</span>' : '') +
+      '<div class="agent-item-tags">' +
+        '<span class="badge ' + sourceClass + '">' + sourceLabel + '</span>' +
+        (a.is_fallback ? '<span class="agent-item-tag">fallback</span>' : '') +
+      '</div>' +
       '</div>'
     );
   }).join('');
@@ -501,39 +578,84 @@ function selectAgent(agent) {
     el.classList.toggle('active', el.dataset.name === agent.name);
   });
 
+  var isGcs = agent.source === 'gcs';
+  var sourceClass = isGcs ? 'b-gcs' : 'b-python';
+  var sourceLabel = isGcs ? 'GCS' : 'Python';
+
+  var toolsHtml = '';
+  if (toolsCache && toolsCache.length) {
+    var agentTools = agent.tools || [];
+    toolsHtml = '<div class="tools-grid" id="agent-tools">' +
+      toolsCache.map(function(t) {
+        var checked = agentTools.indexOf(t.name) !== -1 || t.always_included;
+        var disabled = t.always_included ? 'disabled' : '';
+        var cls = t.always_included ? 'tool-check always' : 'tool-check';
+        return (
+          '<label class="' + cls + '">' +
+          '<input type="checkbox" value="' + esc(t.name) + '" ' +
+            (checked ? 'checked' : '') + ' ' + disabled + '>' +
+          esc(t.name) +
+          '</label>'
+        );
+      }).join('') +
+    '</div>';
+  } else {
+    toolsHtml = '<div class="field-value">' + (agent.tools||[]).map(function(t) { return esc(t); }).join('<br>') + '</div>';
+  }
+
   var panel = document.getElementById('agent-detail');
   panel.innerHTML =
     '<div class="agent-detail-head">' +
-      '<h2>' + esc(agent.name) + '</h2>' +
-      '<div class="agent-detail-meta">' +
-        '<span><strong>Model:</strong> ' + esc(agent.model||'—') + '</span>' +
-        (agent.is_fallback ? '<span><strong>Role:</strong> Fallback</span>' : '') +
-        (agent.routing_hint ? '<span><strong>Routing:</strong> ' + esc(agent.routing_hint) + '</span>' : '') +
+      '<div class="agent-detail-head-left">' +
+        '<h2>' + esc(agent.name) + ' <span class="badge ' + sourceClass + '">' + sourceLabel + '</span>' +
+          (agent.is_fallback ? ' <span class="badge" style="background:#fef3c7;color:#92400e">fallback</span>' : '') +
+        '</h2>' +
+        '<div class="agent-detail-meta">' +
+          '<span><strong>Model:</strong> ' + esc(agent.model||'—') + '</span>' +
+        '</div>' +
       '</div>' +
+      (isGcs && !agent.has_python_source ?
+        '<button class="btn btn-danger btn-sm" onclick="deleteAgent(' + JSON.stringify(agent.name) + ')">Delete</button>' :
+        isGcs && agent.has_python_source ?
+          '<button class="btn btn-secondary btn-sm" onclick="resetAgent(' + JSON.stringify(agent.name) + ')">Reset to Python</button>' :
+          '<span style="font-size:11px;color:#9e9e9e">Python source — cannot delete</span>'
+      ) +
     '</div>' +
     '<div class="agent-detail-body">' +
       '<div class="field-group">' +
+        '<div class="field-label">Routing Hint</div>' +
+        '<input class="field-value" id="agent-routing-hint" type="text" value="' + esc(agent.routing_hint||'') + '">' +
+      '</div>' +
+      '<div class="field-group">' +
         '<div class="field-label">System Instruction</div>' +
         '<textarea class="field-value" id="agent-instruction" rows="12">' + esc(agent.instruction||'') + '</textarea>' +
-        '<div class="field-actions">' +
-          '<button class="btn btn-primary" id="save-instruction-btn" onclick="saveInstruction(' + JSON.stringify(agent.name) + ')">Save</button>' +
-          '<button class="btn btn-secondary" onclick="resetInstruction(' + JSON.stringify(agent.instruction||'') + ')">Reset</button>' +
-          '<span class="save-status" id="save-status"></span>' +
-        '</div>' +
       '</div>' +
-      (agent.tools && agent.tools.length ? (
-        '<div class="field-group">' +
-          '<div class="field-label">Tools (' + agent.tools.length + ')</div>' +
-          '<div class="field-value">' + agent.tools.map(function(t) { return esc(t); }).join('<br>') + '</div>' +
-        '</div>'
-      ) : '') +
+      '<div class="field-group">' +
+        '<div class="field-label">Tools</div>' +
+        toolsHtml +
+      '</div>' +
+      '<div class="field-actions">' +
+        '<button class="btn btn-primary" id="save-agent-btn" onclick="saveAgent(' + JSON.stringify(agent.name) + ')">Save</button>' +
+        '<button class="btn btn-secondary" onclick="selectAgent(agentsCache.find(function(a){return a.name===' + JSON.stringify(agent.name) + '}))">Reset</button>' +
+        '<span class="save-status" id="save-status"></span>' +
+      '</div>' +
     '</div>';
 }
 
-async function saveInstruction(agentName) {
-  var btn = document.getElementById('save-instruction-btn');
+async function saveAgent(agentName) {
+  var btn = document.getElementById('save-agent-btn');
   var status = document.getElementById('save-status');
-  var newInstruction = document.getElementById('agent-instruction').value;
+
+  var newInstruction = (document.getElementById('agent-instruction') || {}).value || '';
+  var newRoutingHint = (document.getElementById('agent-routing-hint') || {}).value || '';
+
+  // Collect selected tools
+  var toolCheckboxes = document.querySelectorAll('#agent-tools input[type=checkbox]');
+  var newTools = [];
+  toolCheckboxes.forEach(function(cb) {
+    if (cb.checked) newTools.push(cb.value);
+  });
+  if (!newTools.length) newTools = ['transfer_to_triage'];
 
   btn.disabled = true;
   status.textContent = 'Saving…';
@@ -543,15 +665,22 @@ async function saveInstruction(agentName) {
     var r = await fetch(api('/admin/api/agents/' + encodeURIComponent(agentName)), {
       method: 'PATCH',
       headers: hdrs(),
-      body: JSON.stringify({instruction: newInstruction}),
+      body: JSON.stringify({
+        instruction: newInstruction,
+        routing_hint: newRoutingHint,
+        tools: newTools,
+      }),
     });
     if (r.ok) {
+      var updated = await r.json();
       status.textContent = 'Saved ✓';
       status.className = 'save-status save-ok';
       // Update local cache
       if (agentsCache) {
-        var a = agentsCache.find(function(a) { return a.name === agentName; });
-        if (a) a.instruction = newInstruction;
+        var idx = agentsCache.findIndex(function(a) { return a.name === agentName; });
+        if (idx !== -1) {
+          agentsCache[idx] = Object.assign(agentsCache[idx], updated);
+        }
       }
     } else {
       var err = await r.json().catch(function() { return {detail: 'Error ' + r.status}; });
@@ -567,9 +696,132 @@ async function saveInstruction(agentName) {
   }
 }
 
-function resetInstruction(original) {
-  var el = document.getElementById('agent-instruction');
-  if (el) el.value = original;
+async function deleteAgent(agentName) {
+  if (!confirm('Delete agent "' + agentName + '"? This cannot be undone.')) return;
+
+  try {
+    var r = await fetch(api('/admin/api/agents/' + encodeURIComponent(agentName)), {
+      method: 'DELETE',
+      headers: hdrs(),
+    });
+    if (r.ok) {
+      agentsCache = (agentsCache || []).filter(function(a) { return a.name !== agentName; });
+      activeAgentName = null;
+      document.getElementById('agent-detail').innerHTML =
+        '<div class="agent-empty">Agent deleted successfully.</div>';
+      renderAgentList(agentsCache);
+    } else {
+      var err = await r.json().catch(function() { return {detail: 'Error ' + r.status}; });
+      alert('Error: ' + (err.detail || r.status));
+    }
+  } catch(e) {
+    alert('Network error. Please try again.');
+  }
+}
+
+async function resetAgent(agentName) {
+  if (!confirm('Reset "' + agentName + '" to its Python source defaults? The GCS override will be removed.')) return;
+
+  try {
+    var r = await fetch(api('/admin/api/agents/' + encodeURIComponent(agentName) + '/override'), {
+      method: 'DELETE',
+      headers: hdrs(),
+    });
+    if (r.ok) {
+      await loadAgents();
+      var found = (agentsCache || []).find(function(a) { return a.name === agentName; });
+      if (found) selectAgent(found);
+    } else {
+      var err = await r.json().catch(function() { return {detail: 'Error ' + r.status}; });
+      alert('Error: ' + (err.detail || r.status));
+    }
+  } catch(e) {
+    alert('Network error. Please try again.');
+  }
+}
+
+// ── CREATE MODAL ──────────────────────────────────────────────────────────────
+function showCreateModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('new-name').value = '';
+  document.getElementById('new-routing-hint').value = '';
+  document.getElementById('new-instruction').value = '';
+  document.getElementById('new-model').value = 'gemini-2.5-flash';
+  renderNewToolsGrid();
+}
+
+function hideModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function maybeCloseModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) hideModal();
+}
+
+function renderNewToolsGrid() {
+  var grid = document.getElementById('new-tools-grid');
+  if (!toolsCache || !toolsCache.length) {
+    grid.innerHTML = '<span style="font-size:12px;color:#9e9e9e">Tools not loaded yet.</span>';
+    return;
+  }
+  grid.innerHTML = toolsCache.map(function(t) {
+    var cls = t.always_included ? 'tool-check always' : 'tool-check';
+    var disabled = t.always_included ? 'disabled' : '';
+    return (
+      '<label class="' + cls + '">' +
+      '<input type="checkbox" class="new-tool-cb" value="' + esc(t.name) + '" ' +
+        (t.always_included ? 'checked ' : '') + disabled + '>' +
+      esc(t.name) +
+      '</label>'
+    );
+  }).join('');
+}
+
+async function createAgent() {
+  var btn = document.getElementById('create-btn');
+  var name = document.getElementById('new-name').value.trim();
+  var routingHint = document.getElementById('new-routing-hint').value.trim();
+  var instruction = document.getElementById('new-instruction').value.trim();
+  var model = document.getElementById('new-model').value;
+
+  if (!name) { alert('Agent name is required.'); return; }
+  if (!instruction) { alert('System instruction is required.'); return; }
+  if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(name)) {
+    alert('Name must start with a letter and contain only letters, numbers, _ or -.');
+    return;
+  }
+
+  var tools = ['transfer_to_triage'];
+  document.querySelectorAll('.new-tool-cb:checked').forEach(function(cb) {
+    if (tools.indexOf(cb.value) === -1) tools.push(cb.value);
+  });
+
+  btn.disabled = true;
+  btn.textContent = 'Creating…';
+
+  try {
+    var r = await fetch(api('/admin/api/agents'), {
+      method: 'POST',
+      headers: hdrs(),
+      body: JSON.stringify({name: name, routing_hint: routingHint, instruction: instruction, model: model, tools: tools}),
+    });
+    if (r.ok) {
+      var created = await r.json();
+      hideModal();
+      await loadAgents();
+      // Select the newly created agent
+      var found = (agentsCache || []).find(function(a) { return a.name === name; });
+      if (found) selectAgent(found);
+    } else {
+      var err = await r.json().catch(function() { return {detail: 'Error ' + r.status}; });
+      alert('Error: ' + (err.detail || r.status));
+    }
+  } catch(e) {
+    alert('Network error. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Create Agent';
+  }
 }
 
 // ── INIT & AUTO-REFRESH ───────────────────────────────────────────────────────
@@ -581,6 +833,10 @@ function tick() {
 
 document.getElementById('q-user').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') doSearch();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') hideModal();
 });
 
 tick();
