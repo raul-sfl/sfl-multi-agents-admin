@@ -2,8 +2,8 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "npx serve . --listen $PORT"
+startCommand = "python3 -m http.server $PORT"
 healthcheckPath = "/"
-healthcheckTimeout = 10
+healthcheckTimeout = 30
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
