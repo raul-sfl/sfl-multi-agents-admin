@@ -59,7 +59,9 @@ header p{font-size:12px;opacity:.75;margin-top:2px}
 .b-agent{background:#fce7f3;color:#9d174d}
 .b-python{background:#e0e7ff;color:#3730a3}
 .b-gcs{background:#d1fae5;color:#065f46}
+.b-voice{background:#fce7f3;color:#9d174d}
 .conv-count{font-size:11px;color:#9e9e9e}
+.msg-voice-badge{font-size:10px;opacity:.65;margin-left:4px}
 
 /* ── Detail panel ── */
 .detail{flex:1;display:flex;flex-direction:column;background:#f5f5f7;overflow:hidden}
@@ -410,6 +412,7 @@ function renderList(convs) {
       '<div class="conv-meta">' +
         '<span class="badge b-lang">' + langName(c.language) + '</span>' +
         '<span class="badge ' + (c.status==='active'?'b-active':'b-closed') + '">' + esc(c.status||'?') + '</span>' +
+        (c.channel==='voice' ? '<span class="badge b-voice">🎤 voice</span>' : '') +
         '<span class="conv-count">' + (c.message_count||0) + ' msgs</span>' +
         agentBadges +
       '</div></div>'
@@ -458,6 +461,7 @@ function renderDetail(conv, msgs) {
       '<span><strong>User:</strong> <a href="#" onclick="jumpUser(' + JSON.stringify(conv.user_id) + ');return false">' + esc(conv.user_id) + '</a></span>' +
       '<span><strong>Language:</strong> ' + langName(conv.language) + '</span>' +
       '<span><strong>Status:</strong> ' + esc(conv.status||'—') + '</span>' +
+      (conv.channel==='voice' ? '<span><strong>Channel:</strong> 🎤 voice</span>' : '') +
       '<span><strong>Messages:</strong> ' + (conv.message_count||0) + '</span>' +
       '<span><strong>Started:</strong> ' + fmt(conv.started_at) + '</span>' +
       '<span><strong>Last activity:</strong> ' + fmt(conv.last_activity_at) + '</span>' +
@@ -475,7 +479,7 @@ function renderDetail(conv, msgs) {
       thread += (
         '<div class="msg ' + (isUser?'user':'assistant') + '">' +
         (showLabel ? '<div class="msg-lbl">' + esc(m.agent) + '</div>' : '') +
-        '<div class="msg-bubble">' + esc(m.content||'') + '</div>' +
+        '<div class="msg-bubble">' + esc(m.content||'') + (m.channel==='voice'?'<span class="msg-voice-badge">🎤</span>':'') + '</div>' +
         '<div class="msg-ts">' + fmt(m.timestamp) + '</div>' +
         '</div>'
       );
